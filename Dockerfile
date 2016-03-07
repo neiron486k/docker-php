@@ -26,4 +26,4 @@ RUN curl -LsS https://getcomposer.org/composer.phar -o /usr/local/bin/composer.p
 
 WORKDIR /home/web
 EXPOSE 9000
-ENTRYPOINT ["/usr/bin/supervisord"]
+ENTRYPOINT ["/usr/bin/supervisord", "-n"]
