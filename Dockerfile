@@ -1,10 +1,9 @@
 FROM debian:jessie
 MAINTAINER Alexey Astafiev "efsneiron@gmail.com"
-ENV TERM dumb
 ENV PHP_DEPS php5-fpm php5-curl php5-mysql php5-gd php5-mcrypt php5-intl
 
 RUN apt-get update \
-    && apt-get install -y $PHP_DEPS curl git vim nano cron supervisor \
+    && apt-get install -y $PHP_DEPS curl git vim cron supervisor \
     && rm -rf /var/lib/apt/lists/*
 
 RUN rm /etc/php5/fpm/php.ini && ln -sf /etc/php5/cli/php.ini /etc/php5/fpm/php.ini
