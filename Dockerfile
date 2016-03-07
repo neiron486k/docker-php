@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER neiron/php-core Alexey Astafiev "efsneiron@gmail.com"
+MAINTAINER Alexey Astafiev "efsneiron@gmail.com"
 ENV TERM dumb
 ENV PHP_DEPS php5-fpm php5-curl php5-mysql php5-gd php5-mcrypt php5-intl
 
