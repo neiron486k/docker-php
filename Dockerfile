@@ -25,4 +25,5 @@ RUN curl -LsS https://getcomposer.org/composer.phar -o /usr/local/bin/composer.p
     && chmod a+x /usr/local/bin/symfony
 
 WORKDIR /home/web
-CMD ["/usr/bin/supervisord"]
+EXPOSE 9000
+ENTRYPOINT ["/usr/bin/supervisord"]
