@@ -1,7 +1,7 @@
 FROM ubuntu
 MAINTAINER Alexey Astafev "efsneiron@gmail.com"
 
-ENV PHP_DEPS php7.0-cli php7.0-curl php7.0-fpm php7.0-mysql php7.0-gd php7.0-mcrypt php7.0-intl php7.0-xml
+ENV PHP_DEPS php7.0-cli php7.0-curl php7.0-fpm php7.0-mysql php7.0-gd php7.0-mcrypt php7.0-intl php7.0-xml php7.0-zip
 ENV INI_CONF=/etc/php/7.0
 ENV NOTVISIBLE "in users profile"
 
