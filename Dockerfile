@@ -1,7 +1,7 @@
 FROM ubuntu
 MAINTAINER Alexey Astafev "efsneiron@gmail.com"
 
-ENV PHP_DEPS php7.0-cli php7.0-curl php7.0-fpm php7.0-mysql php7.0-gd php7.0-mcrypt php7.0-intl php7.0-xml php7.0-zip
+ENV PHP_DEPS php7.0-cli php7.0-curl php7.0-fpm php7.0-mysql php7.0-gd php7.0-mcrypt php7.0-intl php7.0-xml php7.0-zip php7.0-mbstring
 ENV INI_CONF=/etc/php/7.0
 ENV NOTVISIBLE "in users profile"
 
@@ -21,6 +21,9 @@ RUN mkdir -p /run/php
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin
 RUN php -r "unlink('composer-setup.php');"
+RUN wget https://phar.phpunit.de/phpunit.phar
+RUN chmod +x phpunit.phar
+RUN mv phpunit.phar /usr/local/bin/phpunit
 
 COPY www.conf $INI_CONF/fpm/pool.d/
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
