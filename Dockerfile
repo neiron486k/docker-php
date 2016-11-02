@@ -6,7 +6,7 @@ ENV INI_CONF=/etc/php/7.0
 ENV NOTVISIBLE "in users profile"
 
 RUN apt-get update \
-	&& apt-get install -y $PHP_DEPS openssh-server supervisor \
+	&& apt-get install -y $PHP_DEPS openssh-server supervisor cifs-utils \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /var/run/sshd
