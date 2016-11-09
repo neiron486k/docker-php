@@ -1,12 +1,12 @@
 FROM ubuntu
 MAINTAINER Alexey Astafev "efsneiron@gmail.com"
 
-ENV PHP_DEPS php7.0-cli php7.0-curl php7.0-fpm php7.0-mysql php7.0-gd php7.0-mcrypt php7.0-intl php7.0-xml php7.0-zip php7.0-mbstring
+ENV PHP_DEPS php7.0-cli php7.0-curl php7.0-fpm php7.0-mysql php7.0-gd php7.0-mcrypt php7.0-intl php7.0-xml php7.0-zip php7.0-mbstring php7.0-sqlite3
 ENV INI_CONF=/etc/php/7.0
 ENV NOTVISIBLE "in users profile"
 
 RUN apt-get update \
-	&& apt-get install -y $PHP_DEPS openssh-server supervisor cifs-utils \
+	&& apt-get install -y $PHP_DEPS openssh-server supervisor cifs-utils nfs-common \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /var/run/sshd
