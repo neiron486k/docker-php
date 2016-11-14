@@ -6,7 +6,7 @@ ENV INI_CONF=/etc/php/7.0
 ENV NOTVISIBLE "in users profile"
 
 RUN apt-get update \
-	&& apt-get install -y $PHP_DEPS openssh-server supervisor cifs-utils nfs-common \
+	&& apt-get install -y $PHP_DEPS openssh-server supervisor cifs-utils nfs-common curl nfs-common\
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /var/run/sshd
@@ -24,6 +24,8 @@ RUN php -r "unlink('composer-setup.php');"
 RUN wget https://phar.phpunit.de/phpunit.phar
 RUN chmod +x phpunit.phar
 RUN mv phpunit.phar /usr/local/bin/phpunit
+RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
+RUN chmod a+x /usr/local/bin/symfony
 
 COPY www.conf $INI_CONF/fpm/pool.d/
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
