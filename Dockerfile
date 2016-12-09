@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:16.04
 MAINTAINER Alexey Astafev "efsneiron@gmail.com"
 
 ## Gosu installation
@@ -16,11 +16,16 @@ RUN set -x \
     && gosu nobody true \
     && apt-get purge -y --auto-remove ca-certificates wget
 
-ENV PHP_DEPS php7.0-cli php7.0-curl php7.0-fpm php7.0-mysql php7.0-gd php7.0-mcrypt php7.0-intl php7.0-xml php7.0-zip php7.0-mbstring php7.0-sqlite3
-ENV INI_CONF=/etc/php/7.0
+ENV PHP_DEPS php7.1-cli php7.1-curl php7.1-fpm php7.1-mysql php7.1-gd php7.1-mcrypt php7.1-intl php7.1-xml php7.1-zip php7.1-mbstring php7.1-sqlite3
+ENV INI_CONF=/etc/php/7.1
 ENV NOTVISIBLE "in users profile"
 
 RUN apt-get update \
+    && apt-get install -y software-properties-common \
+    && locale-gen en_US.utf8 \
+    && export LANG=en_US.utf8 \
+    && add-apt-repository ppa:ondrej/php -y \
+    && apt-get update \
     && apt-get install -y $PHP_DEPS openssh-server supervisor cifs-utils nfs-common curl \
     && rm -rf /var/lib/apt/lists/*
 
