@@ -21,13 +21,14 @@ ENV INI_CONF=/etc/php/7.1
 ENV NOTVISIBLE "in users profile"
 
 RUN apt-get update \
-    && apt-get install -y software-properties-common \
-    && locale-gen en_US.utf8 \
-    && export LANG=en_US.utf8 \
-    && add-apt-repository ppa:ondrej/php -y \
-    && apt-get update \
-    && apt-get install -y $PHP_DEPS openssh-server supervisor cifs-utils nfs-common curl \
-    && rm -rf /var/lib/apt/lists/*
+   && apt-get install -y software-properties-common locales \
+   && locale-gen en_US.utf8 \
+   && export LANG=en_US.utf8 \
+   && add-apt-repository ppa:ondrej/php -y \
+   && apt-get update \
+   && apt-get install -y $PHP_DEPS openssh-server supervisor cifs-utils nfs-common curl git \
+   && rm -rf /var/lib/apt/lists/*
+
 
 RUN mkdir /var/run/sshd
 RUN echo 'root:screencast' | chpasswd
